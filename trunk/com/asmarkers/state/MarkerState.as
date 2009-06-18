@@ -5,7 +5,7 @@ package com.asmarkers.state
 	
 	import flash.events.EventDispatcher;
 	
-	public class MarkerState extends EventDispatcher
+	public class MarkerState
 	{
 		protected var _marker:Marker;
 		

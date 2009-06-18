@@ -39,6 +39,11 @@ package com.asmarkers.sprite
     import com.asmarkers.state.TooltipState;
     import com.eclecticdesignstudio.utils.tween.GTweener;
     
+    import flash.events.Event;
+    import flash.events.MouseEvent;
+    
+    import mx.controls.Alert;
+    
     public class SquaredSprite extends MarkerSprite
     {
         protected var _width:Number;
@@ -52,16 +57,17 @@ package com.asmarkers.sprite
     	
     	override public function configure(cfg:Object):void
     	{
-    		this.width = cfg.width ? cfg.width : 20;
-    		this.height = cfg.height ? cfg.height : 20;
+    		_width = cfg.width ? cfg.width : 20;
+    		_height = cfg.height ? cfg.height : 20;
     		
-    		this.bgColor = cfg.bgColor ? cfg.bgColor : 0xFFFFFF;
-    		this.bgAlpha = cfg.bgAlpha ? cfg.bgAlpha : 1;
+    		bgColor = cfg.bgColor ? cfg.bgColor : 0xFFFFFF;
+    		bgAlpha = cfg.bgAlpha ? cfg.bgAlpha : 1;
     		
-    		this.fgColor = cfg.fgColor ? cfg.fgColor : 0xF17A26;
-    		this.fgAlpha = cfg.fgAlpha ? cfg.fgAlpha : 1; 
+    		fgColor = cfg.fgColor ? cfg.fgColor : 0xF17A26;
+    		fgAlpha = cfg.fgAlpha ? cfg.fgAlpha : 1; 
     		
     		cfg.marker.addEventListener(MarkerEvent.STATE_CHANGE, stateChangeHandler, false, 0, false);
+    		draw();
     	}
         
         override public function draw():void
@@ -121,15 +127,19 @@ package com.asmarkers.sprite
         	var state:MarkerState = evt.marker.state;
         	
         	if(state is IconState){
-        		GTweener.addTween (this, 0.5, { width: 20, height: 20 }, {changeListener: draw} );
+        		GTweener.addTween (this, 0.5, { width: 20, height: 20 }, {changeListener: changeHandler} );
         		
         	} else if (state is TooltipState){
-        		GTweener.addTween (this, 0.5, { width: 100, height: 20 }, {changeListener: draw} );
+        		GTweener.addTween (this, 0.5, { width: 150, height: 20 }, {changeListener: changeHandler} );
         		
         	} else if (state is DetailState){
-        		GTweener.addTween (this, 0.5, { width: 200, height: 1500 }, {changeListener: draw} );
-        		
+        		GTweener.addTween (this, 0.5, { width: 300, height: 50 }, {changeListener: changeHandler} );
         	}
+        }
+        
+        private function changeHandler(evt:Event):void
+        {
+        	draw();
         }
         
     }

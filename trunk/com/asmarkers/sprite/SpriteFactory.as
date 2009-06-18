@@ -27,8 +27,9 @@ package com.asmarkers.sprite
     		var sprite:MarkerSprite;
     		
 			var t:String = type.toLowerCase();
-			if("squared"){
+			if(t == "squared"){
 				sprite = new SquaredSprite();
+				
 			} else {
 				throw new UnknownTypeError(type);
 			}

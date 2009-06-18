@@ -28,13 +28,13 @@ package com.asmarkers.state
     		var state:MarkerState;
     		
 			var t:String = type.toLowerCase();
-			if("icon"){
+			if(t == "icon"){
 				state = new IconState(marker);
 				
-			} else if("detail"){
+			} else if(t == "detail"){
 				state = new DetailState(marker);
 				
-			} else if("tooltip"){
+			} else if(t == "tooltip"){
 				state = new TooltipState(marker);
 				
 			} else {

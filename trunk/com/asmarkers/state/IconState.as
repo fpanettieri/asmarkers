@@ -12,7 +12,6 @@ package com.asmarkers.state
 		{
 			super(marker);
 			_marker.addEventListener(MouseEvent.MOUSE_OVER, mouseOverHandler, false, 0, false);
-			dispatchEvent(new MarkerEvent(_marker, MarkerEvent.STATE_CHANGE));
 		}
 		
 		private function mouseOverHandler(evt:Event):void
