@@ -2,8 +2,7 @@
  * Marker.as
  *
  * Marker implementation
- * It provides an abstraction over real markers that can be used
- * to interact with other libraries
+ * 
  *
  * Author:
  *    Fabio R. Panettieri
@@ -16,79 +15,67 @@
  
 package com.asmarkers.core
 {
+    import com.asmarkers.sprite.MarkerSprite;
     import com.asmarkers.sprite.SpriteFactory;
-    
-    import flash.events.MouseEvent;
+    import com.asmarkers.state.MarkerState;
+    import com.asmarkers.state.StateFactory;
     
     public class Marker extends AbstractMarker
     {
-        public var state:BubbleMarkerState;
-        public var sprite:BubbleSprite;
-        
-        public function Marker()
-        {
-        	/* Bind events */
-            addEventListener(MouseEvent.MOUSE_OVER, mouseOver);
-        	addEventListener(MouseEvent.MOUSE_OUT, mouseOut);
-        	addEventListener(MouseEvent.CLICK, click);
-        }
+        protected var _state:MarkerState;
+        protected var _sprite:MarkerSprite;
         
         public function configure(config:Object):void
         {
-            sprite = SpriteFactory.create(config.sprite ? config.sprite : "squared");
-            sprite.configure(config);
-            addChild(sprite);
+        	// Safe configuration initialization
+        	var cfg:Object = config ? config : {};
         	
-        	/* set default state */
-        	state = new IconState(this);
+        	// Add the marker to the configuration
+        	cfg.marker = this;
+        	
+            _sprite = SpriteFactory.create(cfg.sprite ? cfg.sprite : "squared");
+            _sprite.configure(cfg);
+            addChild(_sprite);
+        	
+        	// Set default state
+        	changeState(StateFactory.create(cfg.state ? cfg.state : "icon", this));
         	draw();
         }
         
-        public function set textFormat(textFormat:TextFormat):void
+        public function changeState(state:MarkerState):void
         {
-        	_textFormat = textFormat; 
-        	idField.setTextFormat(_textFormat);
+        	_state = state;
         }
         
         override public function set height(height:Number):void
         {
-        	sprite.height = height;
+        	_sprite.height = height;
         }
         
         override public function get height():Number
         {
-			return sprite.height;        	
+			return _sprite.height;        	
         }
         
         override public function set width(width:Number):void
         {
-        	sprite.width = width;
+        	_sprite.width = width;
         }
         
         override public function get width():Number
         {
-			return sprite.width;        	
+			return _sprite.width;        	
+        }
+        
+        public function get state():MarkerState
+        {
+			return _state;
         }
         
         protected function draw():void
         {
-        	sprite.draw();
+        	_sprite.draw();
         }
-        
-        protected function mouseOver(event:MouseEvent):void
-        {
-        	state.mouseOver();
-        }
-        
-        protected function mouseOut(event:MouseEvent):void
-        {
-        	state.mouseOut();
-        }
-        
-        protected function click(event:MouseEvent):void
-        {
-        	state.click();
-        }
-                
+                        
     }
 }

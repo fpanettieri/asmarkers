@@ -1,35 +1,37 @@
-package com.sni.maphlex.markers.bubble
+package com.asmarkers.state
 {
-	import com.eclecticdesignstudio.utils.tween.GTweener;
+	import com.asmarkers.core.Marker;
+	import com.asmarkers.event.MarkerEvent;
 	
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	
-	public class TooltipState extends BubbleMarkerState
+	public class TooltipState extends MarkerState
 	{
-		public function TooltipState(marker:BubbleMarker)
+		public function TooltipState(marker:Marker)
 		{
 			super(marker);
-			GTweener.addTween (_marker, 0.5, { width: _marker.openWidth, height: _marker.closedHeight }, {changeListener: draw} );
+			_marker.addEventListener(MouseEvent.MOUSE_OUT, mouseOutHandler, false, 0, false);
+			_marker.addEventListener(MouseEvent.CLICK, clickHandler, false, 0, false);
+			dispatchEvent(new MarkerEvent(_marker, MarkerEvent.STATE_CHANGE));
 		}
 		
-		override public function draw(e:Event=null):void
-		{	
-			_marker.idField.text = "Tooltip";
-			_marker.idField.width = _marker.width - 6;
-            _marker.idField.height = _marker.height - 6;
-            
-            _marker.idField.x = 6;
-            _marker.idField.y = (-_marker.height) - 6;
-		}
-		
-		override public function mouseOut():void
+		private function mouseOutHandler(evt:Event):void
 		{
-			_marker.state = new IconState(_marker);
+			removeEventListeners();
+			_marker.changeState(StateFactory.create("icon", _marker));
 		}
 		
-		override public function click():void
+		private function clickHandler(evt:Event):void
 		{
-			_marker.state = new DetailState(_marker);
+			removeEventListeners();
+			_marker.changeState(StateFactory.create("detail", _marker));
+		}
+		
+		private function removeEventListeners():void
+		{
+			_marker.removeEventListener(MouseEvent.MOUSE_OUT, mouseOutHandler);
+			_marker.removeEventListener(MouseEvent.CLICK, clickHandler);	
 		}
 
 	}

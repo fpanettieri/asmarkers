@@ -32,7 +32,12 @@
  
 package com.asmarkers.sprite
 {
-    import flash.display.Sprite;
+    import com.asmarkers.event.MarkerEvent;
+    import com.asmarkers.state.DetailState;
+    import com.asmarkers.state.IconState;
+    import com.asmarkers.state.MarkerState;
+    import com.asmarkers.state.TooltipState;
+    import com.eclecticdesignstudio.utils.tween.GTweener;
     
     public class SquaredSprite extends MarkerSprite
     {
@@ -45,19 +50,21 @@ package com.asmarkers.sprite
     	protected var fgColor:uint;
     	protected var fgAlpha:Number;
     	
-    	public function configure(config:Object):void
+    	override public function configure(cfg:Object):void
     	{
-    		this.width = config.width ? config.width : 20;
-    		this.height = config.height ? config.height : 20;
+    		this.width = cfg.width ? cfg.width : 20;
+    		this.height = cfg.height ? cfg.height : 20;
     		
-    		this.bgColor = config.bgColor ? config.bgColor : 0xFFFFFF;
-    		this.bgAlpha = config.bgAlpha ? config.bgAlpha : 1;
+    		this.bgColor = cfg.bgColor ? cfg.bgColor : 0xFFFFFF;
+    		this.bgAlpha = cfg.bgAlpha ? cfg.bgAlpha : 1;
     		
-    		this.fgColor = config.fgColor ? config.fgColor : 0xF17A26;
-    		this.fgAlpha = config.fgAlpha ? config.fgAlpha : 1; 
+    		this.fgColor = cfg.fgColor ? cfg.fgColor : 0xF17A26;
+    		this.fgAlpha = cfg.fgAlpha ? cfg.fgAlpha : 1; 
+    		
+    		cfg.marker.addEventListener(MarkerEvent.STATE_CHANGE, stateChangeHandler, false, 0, false);
     	}
         
-        public function draw():void
+        override public function draw():void
         {
             with(graphics){
                 clear();
@@ -106,6 +113,23 @@ package com.asmarkers.sprite
         override  public function get height():Number
         {
         	return _height;
+        }
+        
+        private function stateChangeHandler(evt:MarkerEvent):void
+        {
+        	GTweener.removeTweens (this);
+        	var state:MarkerState = evt.marker.state;
+        	
+        	if(state is IconState){
+        		GTweener.addTween (this, 0.5, { width: 20, height: 20 }, {changeListener: draw} );
+        		
+        	} else if (state is TooltipState){
+        		GTweener.addTween (this, 0.5, { width: 100, height: 20 }, {changeListener: draw} );
+        		
+        	} else if (state is DetailState){
+        		GTweener.addTween (this, 0.5, { width: 200, height: 1500 }, {changeListener: draw} );
+        		
+        	}
         }
         
     }

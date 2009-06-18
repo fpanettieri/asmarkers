@@ -3,7 +3,7 @@
  *
  * ASMarkers base class
  * It provides an abstraction over real markers that can be used
- * to interact with other projects
+ * to interact with other projects and/or libraries
  *
  * Author:
  *    Fabio R. Panettieri
@@ -16,7 +16,9 @@
 
 package com.asmarkers.core
 {
-    public class AbstractMarker
+	import flash.display.Sprite;
+	
+    public class AbstractMarker extends Sprite
     {
         public function AbstractMarker()
         {

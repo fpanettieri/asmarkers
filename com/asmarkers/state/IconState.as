@@ -1,30 +1,24 @@
-package com.sni.maphlex.markers.bubble
+package com.asmarkers.state
 {
-	import com.eclecticdesignstudio.utils.tween.GTweener;
+	import com.asmarkers.core.Marker;
+	import com.asmarkers.event.MarkerEvent;
 	
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	
-	public class IconState extends BubbleMarkerState
+	public class IconState extends MarkerState
 	{
-		public function IconState(marker:BubbleMarker)
+		public function IconState(marker:Marker)
 		{
 			super(marker);
-			GTweener.addTween (_marker, 0.5, { width: _marker.closedWidth, height: _marker.closedHeight }, {changeListener: draw} );
-		}
-				
-		override public function draw(e:Event = null):void
-		{
-			_marker.idField.text = "8";
-			_marker.idField.width = _marker.width - 6;
-            _marker.idField.height = _marker.height - 6;
-            
-            _marker.idField.x = 6;
-            _marker.idField.y = (-_marker.height) - 6;
+			_marker.addEventListener(MouseEvent.MOUSE_OVER, mouseOverHandler, false, 0, false);
+			dispatchEvent(new MarkerEvent(_marker, MarkerEvent.STATE_CHANGE));
 		}
 		
-		override public function mouseOver():void
+		private function mouseOverHandler(evt:Event):void
 		{
-			_marker.state = new TooltipState(_marker);
+			_marker.removeEventListener(MouseEvent.MOUSE_OVER, mouseOverHandler);
+			_marker.changeState(StateFactory.create("tooltip", _marker));
 		}
 	}
 }

@@ -13,21 +13,22 @@
  *      
  */
 
-package com.sni.maphlex.markers.bubble
+package com.asmarkers.sprite
 {
+    import com.asmarkers.error.AbstractClassError;
+    
     import flash.display.Sprite;
-    import flash.utils.Dictionary;
     
     public class MarkerSprite extends Sprite
     {
     	public function configure(config:Object):void
     	{
-    		throw new AbstractError("MarkerSprite");
+    		throw new AbstractClassError("MarkerSprite");
     	}
     	
         public function draw():void
         {
-        	throw new AbstractError("MarkerSprite");
+        	throw new AbstractClassError("MarkerSprite");
         }
     }
 }
