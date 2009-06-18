@@ -1,38 +1,17 @@
-package com.sni.maphlex.markers.bubble
+package com.asmarkers.state
 {
-	import com.eclecticdesignstudio.utils.tween.GTweener;
+	import com.asmarkers.core.Marker;
+	import com.asmarkers.error.AbstractClassError;
 	
-	import flash.events.Event;
+	import flash.events.EventDispatcher;
 	
-	public class BubbleMarkerState
+	public class MarkerState extends EventDispatcher
 	{
-		protected var _marker:BubbleMarker;
-				
-		public function BubbleMarkerState(marker:BubbleMarker)
+		protected var _marker:Marker;
+		
+		public function MarkerState(marker:Marker)
 		{
 			_marker = marker;
-			GTweener.removeTweens (_marker.sprite);
 		}
-		
-		public function draw(e:Event = null):void
-		{
-			// Implement on child class
-		}
-		
-		public function mouseOver():void
-		{
-			// Implement on child class
-		}
-		
-		public function mouseOut():void
-		{
-			// Implement on child class
-		}
-		
-		public function click():void
-		{
-			// Implement on child class
-		}
-
 	}
 }
