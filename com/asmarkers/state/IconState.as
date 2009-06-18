@@ -1,7 +1,20 @@
+/*
+ * IconState.as
+ *
+ * 
+ *
+ * Author:
+ *    Fabio R. Panettieri
+ *    frenzo.panettieri@gmail.com
+ *
+ * Date:
+ *    18/06/2009
+ *      
+ */
+
 package com.asmarkers.state
 {
 	import com.asmarkers.core.Marker;
-	import com.asmarkers.event.MarkerEvent;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -17,7 +30,7 @@ package com.asmarkers.state
 		private function mouseOverHandler(evt:Event):void
 		{
 			_marker.removeEventListener(MouseEvent.MOUSE_OVER, mouseOverHandler);
-			_marker.changeState(StateFactory.create("tooltip", _marker));
+			_marker.changeState(MarkerState.TOOLTIP);
 		}
 	}
 }
