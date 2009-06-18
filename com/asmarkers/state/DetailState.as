@@ -14,7 +14,6 @@ package com.asmarkers.state
 		{
 			super(marker);
 			_marker.addEventListener(MouseEvent.MOUSE_OUT, mouseOutHandler, false, 0, false);
-			dispatchEvent(new MarkerEvent(_marker, MarkerEvent.STATE_CHANGE));
 		}
 		
 		public function mouseOutHandler(evt:Event):void

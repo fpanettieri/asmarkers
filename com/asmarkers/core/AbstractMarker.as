@@ -20,9 +20,6 @@ package com.asmarkers.core
 	
     public class AbstractMarker extends Sprite
     {
-        public function AbstractMarker()
-        {
-            throw new Error("Cannot instantiate abstract class");
-        }
+    	
     }
 }

@@ -22,7 +22,7 @@ package com.asmarkers.event
 		
 		public var marker:Marker;
 		
-		public function MarkerEvent(marker:Marker, type:String, bubbles:Boolean = false, cancelable:Boolean = false)
+		public function MarkerEvent(marker:Marker, type:String, bubbles:Boolean = true, cancelable:Boolean = false)
 		{
 			super(type, bubbles, cancelable);
 			this.marker = marker; 
