@@ -1,3 +1,15 @@
+/*
+ * DetailState.as
+ *
+ * Author:
+ *    Fabio R. Panettieri
+ *    frenzo.panettieri@gmail.com
+ *
+ * Date:
+ *    18/06/2009
+ *      
+ */
+ 
 package com.asmarkers.state
 {
 	import com.asmarkers.core.Marker;
@@ -8,8 +20,6 @@ package com.asmarkers.state
 	
 	public class DetailState extends MarkerState
 	{
-		protected const _name:String = "DetailState";
-		
 		public function DetailState(marker:Marker)
 		{
 			super(marker);
@@ -19,7 +29,7 @@ package com.asmarkers.state
 		public function mouseOutHandler(evt:Event):void
 		{
 			_marker.removeEventListener(MouseEvent.MOUSE_OUT, mouseOutHandler);
-			_marker.changeState(StateFactory.create("icon", _marker));
+			_marker.changeState(MarkerState.ICON);
 		}
 
 	}

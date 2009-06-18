@@ -1,8 +1,7 @@
 /*
  * Marker.as
  *
- * Marker implementation
- * 
+ * ASMarkers main class
  *
  * Author:
  *    Fabio R. Panettieri
@@ -15,9 +14,12 @@
  
 package com.asmarkers.core
 {
+    import com.asmarkers.data.MarkerData;
     import com.asmarkers.event.MarkerEvent;
+    
     import com.asmarkers.sprite.MarkerSprite;
     import com.asmarkers.sprite.SpriteFactory;
+    
     import com.asmarkers.state.MarkerState;
     import com.asmarkers.state.StateFactory;
     
@@ -25,10 +27,11 @@ package com.asmarkers.core
     {
         protected var _state:MarkerState;
         protected var _sprite:MarkerSprite;
+        protected var _data:MarkerData;
         
-        public function Marker()
+        public function Marker(config:Object = null)
         {
-        	configure();
+        	configure(config);
         }
         
         public function configure(config:Object = null):void
@@ -39,17 +42,17 @@ package com.asmarkers.core
         	// Add the marker to the configuration
         	cfg.marker = this;
         	
-            _sprite = SpriteFactory.create(cfg.sprite ? cfg.sprite : "squared");
+            _sprite = SpriteFactory.create(cfg.sprite ? cfg.sprite : MarkerSprite.SQUARED_BUBBLE);
             _sprite.configure(cfg);
             addChild(_sprite);
         	
         	// Set default state
-        	changeState(StateFactory.create(cfg.state ? cfg.state : "icon", this));
+        	changeState(cfg.state ? cfg.state : MarkerState.ICON);
         }
         
-        public function changeState(state:MarkerState):void
+        public function changeState(state:String):void
         {
-        	_state = state;
+        	_state = StateFactory.create(state, this);
         	dispatchEvent(new MarkerEvent(this, MarkerEvent.STATE_CHANGE));
         }
         

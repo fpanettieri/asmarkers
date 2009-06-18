@@ -57,6 +57,7 @@ package com.asmarkers.sprite
     	
     	override public function configure(cfg:Object):void
     	{
+    		super.configure(cfg);
     		_width = cfg.width ? cfg.width : 20;
     		_height = cfg.height ? cfg.height : 20;
     		
@@ -125,21 +126,18 @@ package com.asmarkers.sprite
         {
         	GTweener.removeTweens (this);
         	var state:MarkerState = evt.marker.state;
+
+			// Notify state change to data formatter
+        	_format.changeState(state);
         	
-        	if(state is IconState){
-        		GTweener.addTween (this, 0.5, { width: 20, height: 20 }, {changeListener: changeHandler} );
-        		
-        	} else if (state is TooltipState){
-        		GTweener.addTween (this, 0.5, { width: 150, height: 20 }, {changeListener: changeHandler} );
-        		
-        	} else if (state is DetailState){
-        		GTweener.addTween (this, 0.5, { width: 300, height: 50 }, {changeListener: changeHandler} );
-        	}
+        	// Create tween efect
+			GTweener.addTween (this, 0.5, { width: _format.width, height: _format.height }, {changeListener: changeHandler} );
         }
         
         private function changeHandler(evt:Event):void
         {
         	draw();
+        	_format.draw();
         }
         
     }
