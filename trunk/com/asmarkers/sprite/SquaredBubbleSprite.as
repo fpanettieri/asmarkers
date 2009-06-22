@@ -44,32 +44,33 @@ package com.asmarkers.sprite
         protected var _width:Number;
     	protected var _height:Number;
     	
-    	protected var bgColor:uint;
-    	protected var bgAlpha:Number;
+    	protected var _borderColor:uint;
+    	protected var _borderAlpha:Number;
+    	protected var _borderWidth:Number;
     	
-    	protected var fgColor:uint;
-    	protected var fgAlpha:Number;
+    	protected var _backgroundColor:uint;
+    	protected var _backgroundAlpha:Number;
     	
     	// Used to indicate the contet where should it be placed
-    	private const _border:Number = 1;
-    	private const _tailW:Number = 5;
-    	private const _tailH:Number = 8;
-    	
     	private var _minX:Number;
     	private var _minY:Number;
-    	private var _maxX:Number;
-    	private var _maxY:Number;
+    	
+    	// Tween duration
+    	private var _tweenDuration:Number;
     	
     	override public function configure(cfg:Object):void
     	{
     		_width = cfg.width ? cfg.width : 20;
     		_height = cfg.height ? cfg.height : 20;
     		
-    		bgColor = cfg.bgColor ? cfg.bgColor : 0xFFFFFF;
-    		bgAlpha = cfg.bgAlpha ? cfg.bgAlpha : 1;
+    		_borderColor = cfg.borderColor ? cfg.borderColor : 0xFFFFFF;
+    		_borderAlpha = cfg.borderAlpha ? cfg.borderAlpha : 1;
+    		_borderWidth = cfg.borderWidth ? cfg.borderWidth : 1;
     		
-    		fgColor = cfg.fgColor ? cfg.fgColor : 0xF17A26;
-    		fgAlpha = cfg.fgAlpha ? cfg.fgAlpha : 1;
+    		_backgroundColor = cfg.backgroundColor ? cfg.backgroundColor : 0xF17A26;
+    		_backgroundAlpha = cfg.backgroundAlpha ? cfg.backgroundAlpha : 1;
+    		
+    		_tweenDuration = cfg.tweenDuration ? cfg.tweenDuration : 0.5;
     		 
     		_format = new SmartFormat();
     		_format.configure(cfg);
@@ -82,22 +83,19 @@ package com.asmarkers.sprite
         {
         	// Set marker bbox
         	_minX = 1;
-        	_minY = -_height - _tailH;
-        	_maxX = _width;
-        	_maxY = -_tailH;
+        	_minY = -_height - 8;
         	
             with(this.graphics){
                 clear();
                 
-                lineStyle(1, bgColor, bgAlpha); 
-                beginFill(fgColor, fgAlpha);
+                lineStyle(_borderWidth, _borderColor, _borderAlpha); 
+                beginFill(_backgroundColor, _backgroundAlpha);
                 
-                moveTo(0,0);
+                //moveTo(0,0);
                 lineTo(0,-_height-8);
                 lineTo(_width,-_height-8);
                 lineTo(_width,-8);
                 lineTo(5,-8);
-                lineTo(0,0);
                 endFill();
             }
             
@@ -130,7 +128,7 @@ package com.asmarkers.sprite
         	_format.changeState(evt.marker.state);
         	
         	// Create tween efect
-			GTweener.addTween (this, 0.5, { width: _format.width, height: _format.height }, {changeListener: changeHandler} );
+			GTweener.addTween (this, _tweenDuration, { width: _format.width, height: _format.height }, {changeListener: changeHandler} );
         }
         
         private function changeHandler(evt:Event):void
