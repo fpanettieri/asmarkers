@@ -16,10 +16,8 @@ package com.asmarkers.core
 {
     import com.asmarkers.data.MarkerData;
     import com.asmarkers.event.MarkerEvent;
-    
     import com.asmarkers.sprite.MarkerSprite;
     import com.asmarkers.sprite.SpriteFactory;
-    
     import com.asmarkers.state.MarkerState;
     import com.asmarkers.state.StateFactory;
     

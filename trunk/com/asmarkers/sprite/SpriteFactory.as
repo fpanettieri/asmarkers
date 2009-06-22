@@ -28,7 +28,7 @@ package com.asmarkers.sprite
     		
 			var t:String = type.toLowerCase();
 			if(t == MarkerSprite.SQUARED_BUBBLE){
-				sprite = new SquaredSprite();
+				sprite = new SquaredBubbleSprite();
 				
 			} else {
 				throw new UnknownTypeError(type);
