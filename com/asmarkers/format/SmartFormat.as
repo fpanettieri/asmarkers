@@ -21,6 +21,8 @@ package com.asmarkers.format
 	import com.asmarkers.state.MarkerState;
 	import com.asmarkers.state.TooltipState;
 	
+	import flash.display.Loader;
+	import flash.net.URLRequest;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	
@@ -28,9 +30,8 @@ package com.asmarkers.format
     {
     	
     	protected var _text:TextField;
+    	protected var _ldr:Loader;
     	
-    	protected var _minWidth:Number;
-    	protected var _minHeight:Number;
     	protected var _maxWidth:Number;
     	protected var _maxHeight:Number;
     	protected var _padding:Number;
@@ -43,14 +44,22 @@ package com.asmarkers.format
             _text.mouseEnabled = false;
             _text.selectable = false;
     		addChild(_text);
+    		
+    		_ldr = new Loader();
+    		//addChild(_ldr);
+    		 
     	}
     	
     	override public function configure(cfg:Object):void
     	{
     		super.configure(cfg);
     		
-    		_minWidth = cfg.minWidth;
-    		_minHeight = cfg.minHeight;
+			var url:String = "http://geodexy.galio.gisworking.com/appServices/dataset/GetImage.php?dataId=7543&sizeType=thumbnail";
+			var urlReq:URLRequest = new URLRequest(url);
+			_ldr.load(urlReq);
+			_ldr.x = 20;
+			_ldr.y = -30;
+    		
     		_maxWidth = cfg.maxWidth;
     		_maxHeight = cfg.maxHeight;
     		
