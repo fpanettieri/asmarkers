@@ -19,21 +19,18 @@ package com.asmarkers.format
 	import com.asmarkers.error.AbstractClassError;
 	import com.asmarkers.state.MarkerState;
 	
-    public class MarkerFormat
+	import flash.display.Sprite;
+	
+    public class MarkerFormat extends Sprite
     {
-    	public static const PLAIN:String = "plain";
-    	public static const HORIZONTAL:String = "horizontal";
-    	public static const VERTICAL:String = "vertical";
-    	public static const SMART:String = "smart";
-    	
     	protected var _data:MarkerData;
     	protected var _width:Number;
     	protected var _height:Number;
     	
     	public function MarkerFormat()
     	{
-    		_width = 20;
-    		_height = 20;
+    		_width = 0;
+    		_height = 0;
     	}
     	
     	public function configure(cfg:Object):void
@@ -41,7 +38,7 @@ package com.asmarkers.format
 			_data = cfg.data ? cfg.data : null;
 		}
     	
-		public function draw():void
+		public function draw(minX:Number, minY:Number, width:Number, height:Number):void
 		{
 			throw new AbstractClassError("MarkerFormat");
 		}
@@ -51,12 +48,12 @@ package com.asmarkers.format
 			throw new AbstractClassError("MarkerFormat");
 		}
 		
-		public function get width():Number
+		override public function get width():Number
 		{
 			return _width;
 		}
 		
-		public function get height():Number
+		override public function get height():Number
 		{
 			return _height;
 		}

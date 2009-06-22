@@ -38,5 +38,13 @@ package com.asmarkers.data
     	public var title:String;
     	public var content:String;
 		public var image:ByteArray;
+		
+		public function SmartData(id:Number, title:String, content:String, image:ByteArray=null)
+		{
+			this.id = id;
+			this.title = title;
+			this.content = content;
+			this.image = image; 	
+		}
     }
 }

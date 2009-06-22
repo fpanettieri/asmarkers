@@ -17,7 +17,6 @@ package com.asmarkers.sprite
 {
     import com.asmarkers.error.AbstractClassError;
     import com.asmarkers.format.MarkerFormat;
-    import com.asmarkers.format.SmartFormat;
     
     import flash.display.Sprite;
     
@@ -29,8 +28,7 @@ package com.asmarkers.sprite
     	
     	public function configure(cfg:Object):void
     	{
-    		_format = cfg.format ? cfg.format : new SmartFormat();
-    		_format.configure(cfg);
+    		throw new AbstractClassError("MarkerSprite");
     	}
     	
         public function draw():void
