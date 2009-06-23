@@ -22,7 +22,6 @@ package com.asmarkers.format
 	import com.asmarkers.state.TooltipState;
 	
 	import flash.display.Loader;
-	import flash.events.IOErrorEvent;
 	import flash.net.URLRequest;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
@@ -63,7 +62,7 @@ package com.asmarkers.format
     		_minWidth = cfg.minWidth;
     		_minHeight = cfg.minHeight;
     		
-    		_padding = cfg.padding ? cfg.padding : 2;
+    		_padding = cfg.padding ? cfg.padding : 4;
     		_horizontalGap = cfg.horizontalGap ? cfg.horizontalGap : 10;
     		_imagePadding = cfg.imagePadding ? cfg.imagePadding : 5;
     		
@@ -86,7 +85,7 @@ package com.asmarkers.format
 					scale = 0;
 				}
 				_image.scaleX = scale;
-				_image.scaleY = scale;	
+				_image.scaleY = scale;
 				
 				_text.width = _image.x - _imagePadding - _horizontalGap;
 				
@@ -129,8 +128,8 @@ package com.asmarkers.format
 			if(_image.visible && _image.content){
 				_width = _width + _image.content.width + 2 * _imagePadding + _horizontalGap;
 				
-				var mh:Number = _image.content.height + 2 * _imagePadding;
-				_height = _height > mh ? _height : mh;
+				var imgh:Number = _image.content.height + 2 * (_imagePadding + _padding);
+				_height = _height > imgh ? _height : imgh;
 			} 
 			
 			// Adjusting width
@@ -158,11 +157,6 @@ package com.asmarkers.format
 	    		_image.load(new URLRequest(data.media));
     			addChild(_image);
     		}
-		}
-		
-		private function scaleImage(scale:Number):void
-		{
-			
 		}
 		
     }
