@@ -83,6 +83,8 @@ package com.asmarkers.sprite
     		 
     		_format = FormatFactory.create(cfg.format ? cfg.format : MarkerFormat.PLAIN);
     		_format.configure(cfg);
+    		_format.mouseEnabled = false;
+    		_format.mouseChildren = false;
     		addChild(_format);
     		
     		cfg.marker.addEventListener(MarkerEvent.STATE_CHANGE, stateChangeHandler, false, 0, false);
@@ -137,9 +139,7 @@ package com.asmarkers.sprite
         {
         	GTweener.removeTweens (this);
         	_format.changeState(evt.marker.state);
-        	
-        	// Create tween efect
-			GTweener.addTween (this, _tweenDuration, { width: _format.width, height: _format.height }, {changeListener: changeHandler} );
+			GTweener.addTween (this, _tweenDuration, { width: _format.width, height: _format.height }, {changeListener: changeHandler, completeListener: changeHandler} );
         }
         
         private function changeHandler(evt:Event):void
