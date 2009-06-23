@@ -40,8 +40,8 @@ package com.asmarkers.format
     		super();
     		_text = new TextField;
             _text.defaultTextFormat = new TextFormat('Arial', 10, 0xFFFFFF, true, null, null, null, '_blank');
-            _text.mouseEnabled = false;
             _text.selectable = false;
+            _text.mouseEnabled = false;
     		addChild(_text);
     	}
     	
@@ -55,12 +55,13 @@ package com.asmarkers.format
     		_padding = cfg.padding ? cfg.padding : 2;
     	}
     	
-		override public function draw(minX:Number, minY:Number, width:Number, height:Number):void
+		override public function draw(minX:Number, minY:Number, maxX:Number, maxY:Number):void
 		{
 			_text.x = minX + _padding;
             _text.y = minY + _padding;
-			_text.width =  width - _padding;
-			_text.height = height - _padding;
+            
+			_text.width =  maxX - minX - 2 * _padding;
+			_text.height = maxY - minY - 2 * _padding;
 		}
 		
 		override public function changeState(state:MarkerState):void
