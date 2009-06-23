@@ -26,7 +26,7 @@ package com.asmarkers.format
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	
-    public class SmartFormat extends MarkerFormat
+    public class SmartFormatter extends TextFormatter
     {
     	
     	protected var _text:TextField;
@@ -42,11 +42,10 @@ package com.asmarkers.format
     	protected var _padding:Number;
     	protected var _imagePadding:Number;
     	
-    	public function SmartFormat()
+    	public function SmartFormatter()
     	{
     		super();
     		_text = new TextField;
-            _text.defaultTextFormat = new TextFormat('Arial', 10, 0xFFFFFF, true, null, null, null, '_blank');;
             _text.selectable = false;
             _text.mouseEnabled = false;
     		addChild(_text);
@@ -61,6 +60,8 @@ package com.asmarkers.format
     		
     		_minWidth = cfg.minWidth;
     		_minHeight = cfg.minHeight;
+    		
+    		_text.defaultTextFormat = new TextFormat(_fontFamily, _fontSize, _fontColor, _bold, _italic, _underline);
     		
     		_padding = cfg.padding ? cfg.padding : 4;
     		_horizontalGap = cfg.horizontalGap ? cfg.horizontalGap : 10;

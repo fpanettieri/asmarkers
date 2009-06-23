@@ -1,5 +1,5 @@
 /*
- * SmartFormat.as
+ * PlainFormat.as
  *
  * This class attemp to display the data in 
  * a way similar to Yahoo smart markers
@@ -21,25 +21,21 @@ package com.asmarkers.format
 	import com.asmarkers.state.MarkerState;
 	import com.asmarkers.state.TooltipState;
 	
-	import flash.display.Loader;
-	import flash.net.URLRequest;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	
-    public class PlainFormat extends MarkerFormat
+    public class PlainFormatter extends TextFormatter
     {
-    	
     	protected var _text:TextField;
     	
     	protected var _maxWidth:Number;
     	protected var _maxHeight:Number;
     	protected var _padding:Number;
     	
-    	public function PlainFormat()
+    	public function PlainFormatter()
     	{
     		super();
     		_text = new TextField;
-            _text.defaultTextFormat = new TextFormat('Arial', 10, 0xFFFFFF, true, null, null, null, '_blank');
             _text.selectable = false;
             _text.mouseEnabled = false;
     		addChild(_text);
@@ -51,6 +47,7 @@ package com.asmarkers.format
     		
     		_maxWidth = cfg.maxWidth;
     		_maxHeight = cfg.maxHeight;
+    		_text.defaultTextFormat = new TextFormat(_fontFamily, _fontSize, _fontColor, _bold, _italic, _underline);
     		
     		_padding = cfg.padding ? cfg.padding : 2;
     	}

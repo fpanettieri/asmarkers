@@ -21,7 +21,7 @@ package com.asmarkers.format
 	
 	import flash.display.Sprite;
 	
-    public class MarkerFormat extends Sprite
+    public class MarkerFormatter extends Sprite
     {
     	public static const PLAIN:String = "plain";
     	public static const SMART:String = "smart";
@@ -30,7 +30,7 @@ package com.asmarkers.format
     	protected var _width:Number;
     	protected var _height:Number;
     	
-    	public function MarkerFormat()
+    	public function MarkerFormatter()
     	{
     		_width = 0;
     		_height = 0;
