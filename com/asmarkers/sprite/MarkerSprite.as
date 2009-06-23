@@ -16,7 +16,7 @@
 package com.asmarkers.sprite
 {
     import com.asmarkers.error.AbstractClassError;
-    import com.asmarkers.format.MarkerFormat;
+    import com.asmarkers.format.MarkerFormatter;
     
     import flash.display.Sprite;
     
@@ -24,7 +24,7 @@ package com.asmarkers.sprite
     {
     	public static const SQUARED_BUBBLE:String = "squared bubble";
     	
-    	protected var _format:MarkerFormat;
+    	protected var _format:MarkerFormatter;
     	
     	public function configure(cfg:Object):void
     	{

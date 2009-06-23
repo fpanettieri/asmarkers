@@ -33,9 +33,8 @@
 package com.asmarkers.sprite
 {
     import com.asmarkers.event.MarkerEvent;
-    import com.asmarkers.format.FormatFactory;
-    import com.asmarkers.format.MarkerFormat;
-    import com.asmarkers.format.SmartFormat;
+    import com.asmarkers.format.FormatterFactory;
+    import com.asmarkers.format.MarkerFormatter;
     import com.eclecticdesignstudio.utils.tween.GTweener;
     
     import flash.events.Event;
@@ -81,7 +80,7 @@ package com.asmarkers.sprite
     		
     		_tweenDuration = cfg.tweenDuration ? cfg.tweenDuration : 0.5;
     		 
-    		_format = FormatFactory.create(cfg.format ? cfg.format : MarkerFormat.PLAIN);
+    		_format = FormatterFactory.create(cfg.format ? cfg.format : MarkerFormatter.PLAIN);
     		_format.configure(cfg);
     		_format.mouseEnabled = false;
     		_format.mouseChildren = false;

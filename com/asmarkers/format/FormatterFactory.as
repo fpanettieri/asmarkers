@@ -20,18 +20,18 @@ package com.asmarkers.format
 {
 	import com.asmarkers.error.UnknownTypeError;
 	
-    public class FormatFactory
+    public class FormatterFactory
     {
-	   	public static function create(type:String):MarkerFormat
+	   	public static function create(type:String):MarkerFormatter
     	{
-    		var format:MarkerFormat;
+    		var format:MarkerFormatter;
     		
 			var t:String = type.toLowerCase();
-			if(t == MarkerFormat.PLAIN){
-				format = new PlainFormat();
+			if(t == MarkerFormatter.PLAIN){
+				format = new PlainFormatter();
 				
-			} else if(t == MarkerFormat.SMART){
-				format = new SmartFormat();
+			} else if(t == MarkerFormatter.SMART){
+				format = new SmartFormatter();
 				
 			} else {
 				throw new UnknownTypeError(type);
