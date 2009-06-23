@@ -33,8 +33,9 @@
 package com.asmarkers.sprite
 {
     import com.asmarkers.event.MarkerEvent;
+    import com.asmarkers.format.FormatFactory;
+    import com.asmarkers.format.MarkerFormat;
     import com.asmarkers.format.SmartFormat;
-    import com.asmarkers.state.MarkerState;
     import com.eclecticdesignstudio.utils.tween.GTweener;
     
     import flash.events.Event;
@@ -52,8 +53,13 @@ package com.asmarkers.sprite
     	protected var _backgroundAlpha:Number;
     	
     	// Used to indicate the contet where should it be placed
-    	private var _minX:Number;
-    	private var _minY:Number;
+    	protected var _tailWidth:Number;
+    	protected var _tailHeight:Number;
+    	
+    	protected var _minX:Number;
+    	protected var _minY:Number;
+    	protected var _maxX:Number;
+    	protected var _maxY:Number;
     	
     	// Tween duration
     	private var _tweenDuration:Number;
@@ -62,6 +68,9 @@ package com.asmarkers.sprite
     	{
     		_width = cfg.width ? cfg.width : 20;
     		_height = cfg.height ? cfg.height : 20;
+    		
+    		_tailWidth = cfg.tailWidth ? cfg.tailWidth : 5;
+    		_tailHeight = cfg.tailHeight ? cfg.tailHeight : 8;
     		
     		_borderColor = cfg.borderColor ? cfg.borderColor : 0xFFFFFF;
     		_borderAlpha = cfg.borderAlpha ? cfg.borderAlpha : 1;
@@ -72,7 +81,7 @@ package com.asmarkers.sprite
     		
     		_tweenDuration = cfg.tweenDuration ? cfg.tweenDuration : 0.5;
     		 
-    		_format = new SmartFormat();
+    		_format = FormatFactory.create(cfg.format ? cfg.format : MarkerFormat.PLAIN);
     		_format.configure(cfg);
     		addChild(_format);
     		
@@ -81,9 +90,11 @@ package com.asmarkers.sprite
         
         override public function draw():void
         {
-        	// Set marker bbox
-        	_minX = 1;
-        	_minY = -_height - 8;
+        	// Set marker content bbox
+        	_minX = 0;
+        	_minY = -_height - _tailHeight;
+        	_maxX = _width;  
+        	_maxY = -_tailHeight;
         	
             with(this.graphics){
                 clear();
@@ -91,15 +102,15 @@ package com.asmarkers.sprite
                 lineStyle(_borderWidth, _borderColor, _borderAlpha); 
                 beginFill(_backgroundColor, _backgroundAlpha);
                 
-                //moveTo(0,0);
-                lineTo(0,-_height-8);
-                lineTo(_width,-_height-8);
-                lineTo(_width,-8);
-                lineTo(5,-8);
+                lineTo(_minX, _minY);
+                lineTo(_maxX, _minY);
+                lineTo(_maxX, _maxY);
+                lineTo(_tailWidth,_maxY);
+                
                 endFill();
             }
-            
-            _format.draw(_minX, _minY, _width, _height);
+        	
+            _format.draw(_minX, _minY, _maxX, _maxY);
         }
 
         override public function set width(width:Number):void
