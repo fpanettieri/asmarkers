@@ -23,6 +23,9 @@ package com.asmarkers.format
 	
     public class MarkerFormat extends Sprite
     {
+    	public static const PLAIN:String = "plain";
+    	public static const SMART:String = "smart";
+    	
     	protected var _data:MarkerData;
     	protected var _width:Number;
     	protected var _height:Number;

@@ -34,17 +34,17 @@ package com.asmarkers.data
 	
     public class SmartData extends MarkerData
     {
-    	public var id:Number;
-    	public var title:String;
-    	public var content:String;
-		public var image:ByteArray;
+    	public var id:String;
+    	public var tooltip:String;
+    	public var detail:String;
+		public var media:String;
 		
-		public function SmartData(id:Number, title:String, content:String, image:ByteArray=null)
+		public function SmartData(id:String, tooltip:String, detail:String, media:String=null)
 		{
 			this.id = id;
-			this.title = title;
-			this.content = content;
-			this.image = image; 	
+			this.tooltip = tooltip;
+			this.detail = detail;
+			this.media = media; 	
 		}
     }
 }
