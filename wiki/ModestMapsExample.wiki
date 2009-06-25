@@ -1,5 +1,5 @@
 #summary ASMarkers & Modest Maps working together
-#labels Phase-Implementation
+#labels Phase-Implementation,Featured
 
 {{{
 <?xml version="1.0" encoding="utf-8"?>
