@@ -24,7 +24,7 @@
 			'100', 												// Id
 			'This is my first marker!', 						// Tooltip
 			'Content\ngoes here\nif you like',					// Detail
-			'http://www.openstreetmap.org/images/osm_logo.png'	// Image
+			'img/osm_logo.png'	// Image
 		);
 		
 		// Now tell the marker some specific configuration
