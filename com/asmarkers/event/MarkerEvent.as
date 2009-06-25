@@ -21,11 +21,13 @@ package com.asmarkers.event
 		public static const STATE_CHANGE:String = 'stateChangeEvent';
 		
 		public var marker:Marker;
+		public var state:String;
 		
-		public function MarkerEvent(marker:Marker, type:String, bubbles:Boolean = true, cancelable:Boolean = false)
+		public function MarkerEvent(marker:Marker, state:String, type:String, bubbles:Boolean = true, cancelable:Boolean = false)
 		{
 			super(type, bubbles, cancelable);
-			this.marker = marker; 
+			this.marker = marker;
+			this.state = state; 
 		}
 		
 	}

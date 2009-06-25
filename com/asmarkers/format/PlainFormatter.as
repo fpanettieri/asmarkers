@@ -16,6 +16,7 @@
 package com.asmarkers.format
 {
 	import com.asmarkers.data.SmartData;
+	import com.asmarkers.event.FormatterEvent;
 	import com.asmarkers.state.DetailState;
 	import com.asmarkers.state.IconState;
 	import com.asmarkers.state.MarkerState;
@@ -38,6 +39,8 @@ package com.asmarkers.format
     		_text = new TextField;
             _text.selectable = false;
             _text.mouseEnabled = false;
+            _text.width = 0;
+            _text.height = 0;
     		addChild(_text);
     	}
     	
@@ -90,6 +93,8 @@ package com.asmarkers.format
             if(!isNaN(_maxHeight) && _maxHeight < height - _padding){
 				_height = _maxHeight;            	
             }
+            
+            dispatchEvent(new FormatterEvent(FormatterEvent.RESIZE));
 		}
 		
     }

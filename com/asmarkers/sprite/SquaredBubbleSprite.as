@@ -32,9 +32,8 @@
  
 package com.asmarkers.sprite
 {
-    import com.asmarkers.event.MarkerEvent;
-    import com.asmarkers.format.FormatterFactory;
-    import com.asmarkers.format.MarkerFormatter;
+    import com.asmarkers.event.FormatterEvent;
+    import com.asmarkers.state.MarkerState;
     import com.eclecticdesignstudio.utils.tween.GTweener;
     
     import flash.events.Event;
@@ -65,6 +64,8 @@ package com.asmarkers.sprite
     	
     	override public function configure(cfg:Object):void
     	{
+    		super.configure(cfg);
+    		
     		_width = cfg.width ? cfg.width : 20;
     		_height = cfg.height ? cfg.height : 20;
     		
@@ -79,14 +80,9 @@ package com.asmarkers.sprite
     		_backgroundAlpha = cfg.backgroundAlpha ? cfg.backgroundAlpha : 1;
     		
     		_tweenDuration = cfg.tweenDuration ? cfg.tweenDuration : 0.5;
-    		 
-    		_format = FormatterFactory.create(cfg.format ? cfg.format : MarkerFormatter.PLAIN);
-    		_format.configure(cfg);
-    		_format.mouseEnabled = false;
-    		_format.mouseChildren = false;
-    		addChild(_format);
     		
-    		cfg.marker.addEventListener(MarkerEvent.STATE_CHANGE, stateChangeHandler, false, 0, false);
+    		// Events
+    		_format.addEventListener(FormatterEvent.RESIZE, onFormatterResize, false, 0, false);
     	}
         
         override public function draw():void
@@ -113,6 +109,12 @@ package com.asmarkers.sprite
         	
             _format.draw(_minX, _minY, _maxX, _maxY);
         }
+        
+        public function resize(width:Number, height:Number):void
+        {
+        	GTweener.removeTweens(this);
+			GTweener.addTween(this, _tweenDuration, { width: width, height: height }, {changeListener: changeHandler, completeListener: changeHandler} );
+        }
 
         override public function set width(width:Number):void
         {
@@ -133,13 +135,16 @@ package com.asmarkers.sprite
         {
         	return _height;
         }
-        
-        private function stateChangeHandler(evt:MarkerEvent):void
+
+        private function onFormatterResize(evt:FormatterEvent):void
         {
-        	GTweener.removeTweens (this);
-        	_format.changeState(evt.marker.state);
-			GTweener.addTween (this, _tweenDuration, { width: _format.width, height: _format.height }, {changeListener: changeHandler, completeListener: changeHandler} );
+        	resize(_format.width, _format.height);
         }
+        
+        override public function changeState(state:MarkerState):void
+		{
+			_format.changeState(state);
+		}
         
         private function changeHandler(evt:Event):void
         {
