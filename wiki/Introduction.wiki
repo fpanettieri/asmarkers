@@ -1,0 +1,17 @@
+#summary ASMarkers introduction
+#labels Featured,Phase-Requirements
+
+= Introduction =
+
+The main goal of this project is to develop a nice and clean (_small and hackeable_) library that provide dynamic markers to existing mapping libraries.
+
+The library currently is on an beta stage, and being actively developed, but it can be used without any trouble.
+
+= Examples =
+
+You can see some examples about how to use it with other projects here
+
+Modest Maps Example (http://www.modestmaps.com/)
+
+OpenScales Example (http://www.openscales.org/)
+
