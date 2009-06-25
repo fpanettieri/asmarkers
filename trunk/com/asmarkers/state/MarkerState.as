@@ -18,8 +18,6 @@ package com.asmarkers.state
 	import com.asmarkers.core.Marker;
 	import com.asmarkers.error.AbstractClassError;
 	
-	import flash.events.EventDispatcher;
-	
 	public class MarkerState
 	{
 		public static const ICON:String = "icon";
@@ -32,5 +30,6 @@ package com.asmarkers.state
 		{
 			_marker = marker;
 		}
+		
 	}
 }

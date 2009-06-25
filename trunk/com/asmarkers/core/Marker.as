@@ -51,12 +51,18 @@ package com.asmarkers.core
         public function changeState(state:String):void
         {
         	_state = StateFactory.create(state, this);
-        	dispatchEvent(new MarkerEvent(this, MarkerEvent.STATE_CHANGE));
+        	_sprite.changeState(_state);
+        	dispatchEvent(new MarkerEvent(this, state, MarkerEvent.STATE_CHANGE));
         }
         
         public function get state():MarkerState
         {
 			return _state;
+        }
+        
+        public function get sprite():MarkerSprite
+        {
+			return _sprite;
         }
                         
     }

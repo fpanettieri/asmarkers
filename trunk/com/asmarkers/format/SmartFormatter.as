@@ -16,12 +16,18 @@
 package com.asmarkers.format
 {
 	import com.asmarkers.data.SmartData;
+	import com.asmarkers.event.FormatterEvent;
 	import com.asmarkers.state.DetailState;
 	import com.asmarkers.state.IconState;
 	import com.asmarkers.state.MarkerState;
 	import com.asmarkers.state.TooltipState;
 	
 	import flash.display.Loader;
+	import flash.events.Event;
+	import flash.events.HTTPStatusEvent;
+	import flash.events.IEventDispatcher;
+	import flash.events.IOErrorEvent;
+	import flash.events.ProgressEvent;
 	import flash.net.URLRequest;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
@@ -42,13 +48,27 @@ package com.asmarkers.format
     	protected var _padding:Number;
     	protected var _imagePadding:Number;
     	
+    	protected var _imageLoaded:Boolean;
+    	
     	public function SmartFormatter()
     	{
     		super();
     		_text = new TextField;
             _text.selectable = false;
             _text.mouseEnabled = false;
+            _text.width = 0;
+            _text.height = 0;
     		addChild(_text);
+    		
+    		_image = new Loader();
+    		_image.width = 0;
+    		_image.height = 0;
+    		_image.mouseEnabled = false;
+    		_image.mouseChildren = false;
+    		_imageLoaded = false;
+    		addChild(_image);
+    		
+    		configureListeners(_image.contentLoaderInfo);
     	}
     	
     	override public function configure(cfg:Object):void
@@ -66,8 +86,6 @@ package com.asmarkers.format
     		_padding = cfg.padding ? cfg.padding : 4;
     		_horizontalGap = cfg.horizontalGap ? cfg.horizontalGap : 10;
     		_imagePadding = cfg.imagePadding ? cfg.imagePadding : 5;
-    		
-    		loadContent();
     	}
     	
 		override public function draw(minX:Number, minY:Number, maxX:Number, maxY:Number):void
@@ -112,6 +130,7 @@ package com.asmarkers.format
 	        		_text.text = data.tooltip;
 	        		
 	        	} else if (state is DetailState){
+	        		loadImage();
 	        		_text.text = data.detail;
 	        		_image.visible = true;
 	        	}
@@ -148,17 +167,38 @@ package com.asmarkers.format
             } else if(!isNaN(_minHeight) && _minHeight > _height) {
             	_height = _minHeight;
             }
+            
+            dispatchEvent(new FormatterEvent(FormatterEvent.RESIZE));
 		}
 		
-		private function loadContent():void
+		private function loadImage():void
 		{
 			var data:SmartData = _data as SmartData;
-    		if(data.media != null && data.media != ""){
-    			_image = new Loader();
+    		if(!_imageLoaded && data.media != null && data.media != ""){
 	    		_image.load(new URLRequest(data.media));
-    			addChild(_image);
     		}
 		}
+		
+		private function configureListeners(dispatcher:IEventDispatcher):void {
+            dispatcher.addEventListener(Event.COMPLETE, completeHandler);
+            dispatcher.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+            dispatcher.addEventListener(Event.UNLOAD, unLoadHandler);
+        }
+
+        private function completeHandler(event:Event):void {
+        	_imageLoaded = true;
+        	adjustSize();
+        }
+
+        private function ioErrorHandler(event:IOErrorEvent):void {
+            _imageLoaded = false;
+        	adjustSize();
+        }
+
+        private function unLoadHandler(event:Event):void {
+        	_imageLoaded = false;
+        	adjustSize();
+        }
 		
     }
 }
