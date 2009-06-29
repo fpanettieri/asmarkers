@@ -36,26 +36,31 @@
 
 package com.asmarkers.format
 {
-	import com.asmarkers.error.AbstractClassError;
-	import com.asmarkers.state.MarkerState;
-	
-    public class TextFormatter extends MarkerFormatter
+    import com.asmarkers.error.AbstractClassError;
+    import com.asmarkers.state.MarkerState;
+    
+    public class TextFormatter extends DataFormatter
     {
-    	protected var _fontFamily:String;
-    	protected var _fontSize:Number;
-    	protected var _fontColor:uint;
-    	protected var _bold:Boolean;
-    	protected var _italic:Boolean;
-    	protected var _underline:Boolean;
-    	
-    	override public function configure(cfg:Object):void
-		{
-			super.configure(cfg);
-    		_fontFamily = cfg.fontFamily ? cfg.fontFamily : "Arial"; 
-    		_fontSize = cfg.fontSize ? cfg.fontSize : 10;
-    		_fontColor = cfg.fontColor ? cfg.fontColor : 0xFFFFFF; 
-    		_bold = cfg.bold ? cfg.bold : false; 
-    		_italic = cfg.italic ? cfg.italic : false; 
-		}
+        protected var _fontFamily:String;
+        protected var _fontSize:Number;
+        protected var _fontColor:uint;
+        protected var _bold:Boolean;
+        protected var _italic:Boolean;
+        protected var _underline:Boolean;
+        
+        override public function configure(config:Object):void
+        {
+            super.configure(config);
+            
+            // Safe initialization
+            var cfg:Object = config ? config : {};
+
+            _fontFamily = cfg.fontFamily ? cfg.fontFamily : "Arial"; 
+            _fontSize = cfg.fontSize != null ? cfg.fontSize : 10;
+            _fontColor = cfg.fontColor != null ? cfg.fontColor : 0xFFFFFF; 
+            _bold = cfg.bold ? cfg.bold : false; 
+            _italic = cfg.italic ? cfg.italic : false; 
+        }
     }
 }
+

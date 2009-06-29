@@ -18,10 +18,11 @@
 
 package com.asmarkers.core
 {
-	import flash.display.Sprite;
-	
+    import flash.display.Sprite;
+    
     public class AbstractMarker extends Sprite
     {
-    	
+        
     }
 }
+

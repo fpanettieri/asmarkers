@@ -18,23 +18,24 @@
  
 package com.asmarkers.sprite
 {
-	import com.asmarkers.error.UnknownTypeError;
-	
+    import com.asmarkers.error.UnknownTypeError;
+    
     public class SpriteFactory
     {
-	   	public static function create(type:String):MarkerSprite
-    	{
-    		var sprite:MarkerSprite;
-    		
-			var t:String = type.toLowerCase();
-			if(t == MarkerSprite.SQUARED_BUBBLE){
-				sprite = new SquaredBubbleSprite();
-				
-			} else {
-				throw new UnknownTypeError(type);
-			}
-			
-			return sprite;
-    	}
+        public static function create(type:String):MarkerSprite
+        {
+            var sprite:MarkerSprite;
+            
+            var t:String = type.toLowerCase();
+            if(t == MarkerSprite.SQUARED_BUBBLE){
+                sprite = new SquaredBubbleSprite();
+                
+            } else {
+                throw new UnknownTypeError(type);
+            }
+            
+            return sprite;
+        }
     }
 }
+
