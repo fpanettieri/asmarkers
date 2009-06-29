@@ -18,30 +18,31 @@
  
 package com.asmarkers.state
 {
-	import com.asmarkers.core.Marker;
-	import com.asmarkers.error.UnknownTypeError;
-	
+    import com.asmarkers.core.Marker;
+    import com.asmarkers.error.UnknownTypeError;
+    
     public class StateFactory
     {
-	   	public static function create(type:String, marker:Marker):MarkerState
-    	{
-    		var state:MarkerState;
-    		
-			var t:String = type.toLowerCase();
-			if(t == MarkerState.ICON){
-				state = new IconState(marker);
-				
-			} else if(t == MarkerState.DETAIL){
-				state = new DetailState(marker);
-				
-			} else if(t == MarkerState.TOOLTIP){
-				state = new TooltipState(marker);
-				
-			} else {
-				throw new UnknownTypeError(type);
-			}
-			
-			return state;
-    	}
+           public static function create(type:String, marker:Marker):MarkerState
+        {
+            var state:MarkerState;
+            
+            var t:String = type.toLowerCase();
+            if(t == MarkerState.ICON){
+                state = new IconState(marker);
+                
+            } else if(t == MarkerState.DETAIL){
+                state = new DetailState(marker);
+                
+            } else if(t == MarkerState.TOOLTIP){
+                state = new TooltipState(marker);
+                
+            } else {
+                throw new UnknownTypeError(type);
+            }
+            
+            return state;
+        }
     }
 }
+

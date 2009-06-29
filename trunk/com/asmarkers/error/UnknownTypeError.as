@@ -15,11 +15,12 @@
 
 package com.asmarkers.error
 {
-	public class UnknownTypeError extends Error
-	{
-		public function UnknownTypeError(message:String) 
-		{
-			super("Unknown type: " + message);
-		}
-	}
+    public class UnknownTypeError extends Error
+    {
+        public function UnknownTypeError(message:String) 
+        {
+            super("Unknown type: " + message);
+        }
+    }
 }
+

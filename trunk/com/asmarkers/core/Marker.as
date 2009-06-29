@@ -27,43 +27,39 @@ package com.asmarkers.core
         protected var _sprite:MarkerSprite;
         protected var _data:MarkerData;
         
-        public function Marker(config:Object = null)
-        {
-        	configure(config);
-        }
-        
         public function configure(config:Object = null):void
         {
-        	// Safe configuration initialization
-        	var cfg:Object = config ? config : {};
-        	
-        	// Add the marker to the configuration
-        	cfg.marker = this;
-        	
+            // Safe configuration initialization
+            var cfg:Object = config ? config : {};
+            
+            // Add the marker to the configuration
+            cfg.marker = this;
+            
             _sprite = SpriteFactory.create(cfg.sprite ? cfg.sprite : MarkerSprite.SQUARED_BUBBLE);
             _sprite.configure(cfg);
             addChild(_sprite);
-        	
-        	// Set default state
-        	changeState(cfg.state ? cfg.state : MarkerState.ICON);
+            
+            // Set default state
+            changeState(cfg.state ? cfg.state : MarkerState.ICON);
         }
         
         public function changeState(state:String):void
         {
-        	_state = StateFactory.create(state, this);
-        	_sprite.changeState(_state);
-        	dispatchEvent(new MarkerEvent(this, state, MarkerEvent.STATE_CHANGE));
+            _state = StateFactory.create(state, this);
+            _sprite.changeState(_state);
+            dispatchEvent(new MarkerEvent(this, state, MarkerEvent.STATE_CHANGE));
         }
         
         public function get state():MarkerState
         {
-			return _state;
+            return _state;
         }
         
         public function get sprite():MarkerSprite
         {
-			return _sprite;
+            return _sprite;
         }
                         
     }
 }
+

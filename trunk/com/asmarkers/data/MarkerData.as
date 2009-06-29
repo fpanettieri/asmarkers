@@ -16,6 +16,7 @@ package com.asmarkers.data
 {
     public class MarkerData
     {
-	
+    
     }
 }
+

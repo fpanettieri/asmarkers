@@ -15,11 +15,12 @@
 
 package com.asmarkers.error
 {
-	public class AbstractClassError extends Error
-	{
-		public function AbstractClassError(message:String) 
-		{
-			super("Cannot instantiate abstract class: " + message);
-		}
-	}
+    public class AbstractClassError extends Error
+    {
+        public function AbstractClassError(message:String) 
+        {
+            super("Cannot instantiate abstract class: " + message);
+        }
+    }
 }
+

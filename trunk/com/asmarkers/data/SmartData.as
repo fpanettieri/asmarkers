@@ -30,21 +30,22 @@
 
 package com.asmarkers.data
 {
-	import flash.utils.ByteArray;
-	
+    import flash.utils.ByteArray;
+    
     public class SmartData extends MarkerData
     {
-    	public var id:String;
-    	public var tooltip:String;
-    	public var detail:String;
-		public var media:String;
-		
-		public function SmartData(id:String, tooltip:String, detail:String, media:String=null)
-		{
-			this.id = id;
-			this.tooltip = tooltip;
-			this.detail = detail;
-			this.media = media; 	
-		}
+        public var id:String;
+        public var tooltip:String;
+        public var detail:String;
+        public var media:String;
+        
+        public function SmartData(id:String, tooltip:String, detail:String, media:String=null)
+        {
+            this.id = id;
+            this.tooltip = tooltip;
+            this.detail = detail;
+            this.media = media;     
+        }
     }
 }
+
