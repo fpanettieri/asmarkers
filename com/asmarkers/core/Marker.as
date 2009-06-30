@@ -1,8 +1,20 @@
-/*
+/**
  * Marker.as
  *
  * ASMarkers main class
  *
+ * Configuration parameters
+ *
+ * sprite
+ *     String
+ *     Used to determine which sprite should be used
+ *     Default: MarkerSprite.SQUARED_BUBBLE
+ * 
+ * state
+ *     String
+ *     Used to determine which state should be used to initialize the marker
+ *     Default: MarkerState.ICON
+ * 
  * Author:
  *    Fabio R. Panettieri
  *    frenzo.panettieri@gmail.com

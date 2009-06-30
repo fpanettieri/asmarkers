@@ -1,4 +1,4 @@
-/*
+/**
  * MarkerState.as
  *
  * Abstract marker state 

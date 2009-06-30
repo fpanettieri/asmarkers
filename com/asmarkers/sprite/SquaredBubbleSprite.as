@@ -1,25 +1,60 @@
-/*
+/**
  * SquaredSprite.as
  *
  * A simple bubble marker
  * 
  * Configurable attributes
  *
- * bgColor
+ * width
+ *     Number
+ *     Marker initial width 
+ *     Default: 20 
+ * 
+ * height
+ *     Number
+ *     Marker initial height 
+ *     Default: 20
+ * 
+ * tailWidth
+ *     Number
+ *     Indicates the width of the marker tail  
+ *     Default: 5
+ * 
+ * tailHeight
+ *     Number
+ *     Indicates the height of the marker tail  
+ *     Default: 8
+ * 
+ * backgroundColor
+ *     uint
  *     Background color in hexagesimal format
- *     Ex.: 0xF17A26
+ *     Default: 0xF17A26
  *
- * bgAlpha
+ * backgroundAlpha
+ *     Number
  *     Background transparency, between 0 and 1
- *     Ex.: 0.6
+ *     Default: 1
  *
- * fgColor
- *     Foreground color in hexagesimal format
- *     Ex.: 0xB0E9E9
+ * borderColor
+ *     uint
+ *     Border color in hexagesimal format
+ *     Default.: 0xFFFFFF
  *     
- * bgAlpha
- *     Foreground transparency, between 0 and 1
- *     Ex.: 0.6
+ * borderAlpha
+ *     Number
+ *     Border transparency, between 0 and 1
+ *     Default: 1
+ * 
+ * borderWidth
+ *     Number
+ *     Used to determine how thick the line will be
+ *     Default: 1
+ * 
+ * tweenDuration
+ *     Number
+ *     Indicates how much long should the transition effect be
+ *     Default: 0.5
+ * 
  *
  * Author:
  *    Fabio R. Panettieri

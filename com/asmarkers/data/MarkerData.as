@@ -1,4 +1,4 @@
-/*
+/**
  * MarkerData.as
  *
  * Generic class that represent data asociated with a particular marker

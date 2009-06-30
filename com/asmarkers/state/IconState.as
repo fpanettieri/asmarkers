@@ -1,7 +1,5 @@
-/*
+/**
  * IconState.as
- *
- * 
  *
  * Author:
  *    Fabio R. Panettieri

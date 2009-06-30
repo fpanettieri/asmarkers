@@ -1,12 +1,12 @@
-/*
+/**
  * FormatterEvent.as
  *
  * Author: 
  *    Fabio R. Panettieri
  *    fpanettieri@gisworking.com
  *
- * Copyright (c) 2008 Spatial Networks, Inc.
- * All Rights Reserved
+ * Date:
+ *    30/06/2009
  *
  */
 

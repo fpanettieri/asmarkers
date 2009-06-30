@@ -1,4 +1,4 @@
-/*
+/**
  * TooltipState.as
  *
  * Author:

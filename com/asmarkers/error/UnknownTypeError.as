@@ -1,4 +1,4 @@
-/*
+/**
  * UnknownTypeError.as
  *
  * This error is thrown when you ask a factory

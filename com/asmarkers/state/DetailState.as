@@ -1,4 +1,4 @@
-/*
+/**
  * DetailState.as
  *
  * Author:

@@ -1,4 +1,4 @@
-/*
+/**
  * SmartData.as
  *
  * This class holds all the information needed
@@ -7,16 +7,20 @@
  * It has 4 attributes
  *
  *   id
+ *     String
  *     unique identifier of the marker
  *   
  *   title
+ *     String
  *     Short description of the data represented byt he marker
  *     
  *   content
+ *     String
  *     Preview of the data asociated with that marker
  *
  *   image (Optional)
- *     An thumbnail image related to that marker
+ *     String
+ *     Uri to the path, where the image it's stored
  * 
  *
  * Author:

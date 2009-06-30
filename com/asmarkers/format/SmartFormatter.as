@@ -1,15 +1,48 @@
-/*
+/**
  * SmartFormat.as
  *
  * This class attemp to display the data in 
  * a way similar to Yahoo smart markers
+ * 
+ * Configuration parameters
+ * 
+ * minWidth
+ *     Number
+ *     Minimum valid width
+ * 
+ * minHeight
+ *     Number
+ *     Minimum valid height
+ * 
+ * maxWidth
+ *     Number
+ *     Maximum valid width
+ * 
+ * maxHeight
+ *     Number
+ *     Maximum valid height
  *
+ * padding
+ *     Number
+ *     In pixels, how much space should be left in each side of the marker
+ *     Default: 4
+ * 
+ * horizontalGap
+ *     Number
+ *     In pixels, space between the image and the marker text
+ *     Default: 10
+ * 
+ * imagePadding
+ *     Number
+ *     A special padding, used only in the image
+ *     Default: 5
+ * 
  * Author:
  *    Fabio R. Panettieri
  *    frenzo.panettieri@gmail.com
  *
  * Date:
- *    18/06/2009
+ *    22/06/2009
  *      
  */
 
@@ -34,7 +67,6 @@ package com.asmarkers.format
     
     public class SmartFormatter extends TextFormatter
     {
-        
         protected var _text:TextField;
         protected var _image:Loader;
         
