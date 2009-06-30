@@ -1,4 +1,4 @@
-/*
+/**
  * AbstractMarker.as
  *
  * ASMarkers base class

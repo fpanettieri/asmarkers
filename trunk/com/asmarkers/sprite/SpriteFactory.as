@@ -1,4 +1,4 @@
-/*
+/**
  * SpriteFactory.as
  *
  * Implementation of the factory method pattern
@@ -12,7 +12,7 @@
  *    frenzo.panettieri@gmail.com
  *
  * Date:
- *    17/06/2009
+ *    19/06/2009
  *      
  */
  

@@ -1,4 +1,4 @@
-/*
+/**
  * AbstractClassError.as
  *
  * This error is thrown when you try to make an instance 

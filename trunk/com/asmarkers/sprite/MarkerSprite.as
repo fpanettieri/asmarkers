@@ -1,8 +1,13 @@
-/*
+/**
  * MarkerSprite.as
  *
  * Sprite base class
  * Defines the methods that must be implemented by child clases
+ * 
+ * format
+ *     String
+ *     Used to determine which format should be used
+ *     Default: DataFormatter.SMART
  *
  * Author:
  *    Fabio R. Panettieri

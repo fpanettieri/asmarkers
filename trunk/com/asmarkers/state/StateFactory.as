@@ -1,4 +1,4 @@
-/*
+/**
  * StateFactory.as
  *
  * Implementation of the factory method pattern

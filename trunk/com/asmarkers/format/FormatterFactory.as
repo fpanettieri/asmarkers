@@ -1,5 +1,5 @@
-/*
- * FormatFactory.as
+/**
+ * FormatterFactory.as
  *
  * Implementation of the factory method pattern
  * http://en.wikipedia.org/wiki/Factory_method_pattern

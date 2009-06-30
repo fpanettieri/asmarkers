@@ -1,4 +1,4 @@
-/*
+/**
  * DataFormatter.as
  *
  * The responsability of this class is to 
