@@ -30,6 +30,7 @@ package com.asmarkers.sprite
     public class MarkerSprite extends Sprite
     {
         public static const SQUARED_BUBBLE:String = "squared bubble";
+        public static const BITMAP_BUBBLE:String = "bitmap bubble";
         
         protected var _format:DataFormatter;
         

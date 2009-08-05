@@ -1,7 +1,8 @@
 /**
  * SquaredSprite.as
  *
- * A simple bubble marker
+ * A marker that displays an image in the icon state
+ *
  * 
  * Configurable attributes
  *
@@ -55,13 +56,23 @@
  *     Indicates how much long should the transition effect be
  *     Default: 0.5
  * 
+ * offset
+ *     Point
+ *     Indicates how should be the image displaced
+ *     Default: new Pixel(0,0) 
+ * 
+ * image
+ *     Bitmap
+ *     The image that should be displayed
+ *     Default: Emtpy image
+ * 
  *
  * Author:
  *    Fabio R. Panettieri
  *    frenzo.panettieri@gmail.com
  *
  * Date:
- *    17/06/2009
+ *    04/08/2009
  *      
  */
  
@@ -69,36 +80,56 @@ package com.asmarkers.sprite
 {
     import com.asmarkers.event.FormatterEvent;
     import com.asmarkers.state.MarkerState;
+    import com.asmarkers.util.Util;
     import com.eclecticdesignstudio.utils.tween.GTweener;
     
     import flash.events.Event;
+    import flash.display.Bitmap;
+    import flash.geom.Point; 
     
-    public class SquaredBubbleSprite extends BubbleSprite
+    public class BitmapSprite extends MarkerSprite
     {
+        protected var _offset:Point;
+        protected var _image:Bitmap;
+        
+        override public function configure(config:Object):void
+        {
+            super.configure(config);
+                
+            // Safe initialization
+            var cfg:Object = config ? config : {};
+            
+            _offset = cfg.offset ? cfg.offset : new Point(0,0);
+            _image = cfg.image ? cfg.image : new Bitmap();
+        }
+        
         override public function draw():void
         {
+        	
             // Set marker content bbox
-            _left = 0;
-            _top = -_height - _tailHeight;
-            _right = _width;  
-            _bottom = -_tailHeight;
+            _minX = 0;
+            _minY = -_height - _tailHeight;
+            _maxX = _width;  
+            _maxY = -_tailHeight;
             
             with(this.graphics){
+            	
                 clear();
                 
                 lineStyle(_borderWidth, _borderColor, _borderAlpha); 
                 beginFill(_backgroundColor, _backgroundAlpha);
                 
-                lineTo(_left, _top);
-                lineTo(_right, _top);
-                lineTo(_right, _bottom);
-                lineTo(_tailWidth, _bottom);
+                lineTo(_minX, _minY);
+                lineTo(_maxX, _minY);
+                lineTo(_maxX, _maxY);
+                lineTo(_tailWidth,_maxY);
                 
                 endFill();
             }
             
-            _format.draw(_left, _bottom, _right, _top);
+            _format.draw(_minX, _minY, _maxX, _maxY);
         }
+        
     }
 }
 

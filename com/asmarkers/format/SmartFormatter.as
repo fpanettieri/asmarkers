@@ -123,18 +123,18 @@ package com.asmarkers.format
             _imagePadding = cfg.imagePadding ? cfg.imagePadding : 5;
         }
         
-        override public function draw(minX:Number, minY:Number, maxX:Number, maxY:Number):void
+        override public function draw(left:Number, bottom:Number, right:Number, top:Number):void
         {
             // Adjust position
-            _text.x = minX + _padding;
-            _text.y = minY + _padding;
+            _text.x = left + _padding;
+            _text.y = top + _padding;
             
             if(_image && _image.visible && _image.content){
-                _image.x = maxX - _image.content.width - _padding - _imagePadding;
-                _image.y = minY + _padding + _imagePadding;
+                _image.x = right - _image.content.width - _padding - _imagePadding;
+                _image.y = top + _padding + _imagePadding;
                 
                 // Get current scale
-                var scale:Number = (maxY - minY - 2 * (_padding + _imagePadding)) / _image.content.height;
+                var scale:Number = (bottom - top - 2 * (_padding + _imagePadding)) / _image.content.height;
                 if(scale < 0.2){
                     scale = 0;
                 }
@@ -144,10 +144,10 @@ package com.asmarkers.format
                 _text.width = _image.x - _imagePadding - _horizontalGap;
                 
             } else {
-                _text.width = maxX - _padding;
+                _text.width = right - left - 2 * _padding;
             }
             
-            _text.height = maxY - minY - 2 * _padding;
+            _text.height = bottom - top - 2 * _padding;
             
         }
         
