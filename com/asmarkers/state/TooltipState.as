@@ -13,6 +13,7 @@
 package com.asmarkers.state
 {
     import com.asmarkers.core.Marker;
+    import com.asmarkers.event.MarkerEvent;
     
     import flash.events.Event;
     import flash.events.MouseEvent;
@@ -35,6 +36,7 @@ package com.asmarkers.state
         private function clickHandler(evt:Event):void
         {
             removeEventListeners();
+			_marker.dispatchEvent(new MarkerEvent(_marker, MarkerState.TOOLTIP, MarkerEvent.CLICK));
             _marker.changeState(MarkerState.DETAIL);
         }
         
