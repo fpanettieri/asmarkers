@@ -19,6 +19,7 @@ package com.asmarkers.event
     public class MarkerEvent extends Event
     {
         public static const STATE_CHANGE:String = 'stateChangeEvent';
+        public static const CLICK:String = 'clickEvent';
         
         public var marker:Marker;
         public var state:String;
