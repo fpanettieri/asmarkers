@@ -129,6 +129,9 @@ package com.asmarkers.format
             _text.x = left + _padding;
             _text.y = top + _padding;
             
+            // Calculate text width without image
+            _text.width = right - left - 2 * _padding;
+            
             if(_image && _image.visible && _image.content){
                 _image.x = right - _image.content.width - _padding - _imagePadding;
                 _image.y = top + _padding + _imagePadding;
@@ -141,10 +144,7 @@ package com.asmarkers.format
                 _image.scaleX = scale;
                 _image.scaleY = scale;
                 
-                _text.width = _image.x - _imagePadding - _horizontalGap;
-                
-            } else {
-                _text.width = right - left - 2 * _padding;
+                _text.width = _text.width - _image.width - _imagePadding - _horizontalGap;
             }
             
             _text.height = bottom - top - 2 * _padding;
