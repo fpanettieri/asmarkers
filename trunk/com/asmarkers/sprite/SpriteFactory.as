@@ -30,6 +30,9 @@ package com.asmarkers.sprite
             if(t == MarkerSprite.SQUARED_BUBBLE){
                 sprite = new SquaredBubbleSprite();
                 
+            } else if(t == MarkerSprite.BITMAP_BUBBLE){
+                sprite = new BitmapBubbleSprite();
+
             } else {
                 throw new UnknownTypeError(type);
             }

@@ -89,13 +89,13 @@ package com.asmarkers.format
             _text.defaultTextFormat = new TextFormat(_fontFamily, _fontSize, _fontColor, _bold, _italic, _underline);
         }
         
-        override public function draw(minX:Number, minY:Number, maxX:Number, maxY:Number):void
+        override public function draw(left:Number, bottom:Number, right:Number, top:Number):void
         {
-            _text.x = minX + _padding;
-            _text.y = minY + _padding;
+            _text.x = left + _padding;
+            _text.y = top + _padding;
             
-            _text.width =  maxX - minX - 2 * _padding;
-            _text.height = maxY - minY - 2 * _padding;
+            _text.width =  right - left - 2 * _padding;
+            _text.height = bottom - top - 2 * _padding;
         }
         
         override public function changeState(state:MarkerState):void
