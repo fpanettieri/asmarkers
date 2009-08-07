@@ -7,7 +7,7 @@ The main goal of this project is to develop a nice and clean (_small and hackeab
 
 The library currently is on an beta stage, and being actively developed, but it can be used without any trouble.
 
-= Examples =
+== Examples ==
 
 You can see some examples about how to use it with other open source projects here.
 
