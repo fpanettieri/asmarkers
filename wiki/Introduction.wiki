@@ -9,8 +9,18 @@ The library currently is on an beta stage, and being actively developed, but it 
 
 = Examples =
 
-You can see some examples about how to use it with other open source projects here
+You can see some examples about how to use it with other open source projects here.
 
 [ModestMapsExample Modest Maps Example]
 
 [OpenScalesExample Open Scales Example]
+
+== Screenshots ==
+
+http://picasaweb.google.com/frenzo.panettieri/Asmarkers
+
+== Live ==
+
+See it in action
+
+http://www.xoomcode.com/asmarker
