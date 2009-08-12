@@ -18,7 +18,7 @@ package com.asmarkers.state
     import flash.events.Event;
     import flash.events.MouseEvent;
     
-    public class TooltipState extends MarkerState
+    public class TooltipState extends MarkerState implements IToolTipState
     {
         public function TooltipState(marker:Marker)
         {

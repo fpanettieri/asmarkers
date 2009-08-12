@@ -13,12 +13,11 @@
 package com.asmarkers.state
 {
     import com.asmarkers.core.Marker;
-    import com.asmarkers.event.MarkerEvent;
     
     import flash.events.Event;
     import flash.events.MouseEvent;
     
-    public class DetailState extends MarkerState
+    public class DetailState extends MarkerState implements IDetailState
     {
         public function DetailState(marker:Marker)
         {

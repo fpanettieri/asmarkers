@@ -17,7 +17,7 @@ package com.asmarkers.state
     import flash.events.Event;
     import flash.events.MouseEvent;
     
-    public class SingleDetailState extends MarkerState
+    public class SingleDetailState extends MarkerState implements IDetailState
     {
     	private var _active_marker:Marker = null; 
     	
