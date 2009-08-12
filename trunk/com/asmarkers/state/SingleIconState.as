@@ -17,7 +17,7 @@ package com.asmarkers.state
     import flash.events.Event;
     import flash.events.MouseEvent;
     
-    public class SingleIconState extends MarkerState
+    public class SingleIconState extends MarkerState implements IIconState
     {
         public function SingleIconState(marker:Marker)
         {
