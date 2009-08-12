@@ -37,6 +37,15 @@ package com.asmarkers.state
             } else if(t == MarkerState.TOOLTIP){
                 state = new TooltipState(marker);
                 
+            } else if(t == MarkerState.SINGLE_ICON){
+                state = new SingleIconState(marker);
+                
+            } else if(t == MarkerState.SINGLE_TOOLTIP){
+                state = new SingleTooltipState(marker);
+                
+            } else if(t == MarkerState.SINGLE_DETAIL){
+                state = new SingleDetailState(marker);
+                
             } else {
                 throw new UnknownTypeError(type);
             }

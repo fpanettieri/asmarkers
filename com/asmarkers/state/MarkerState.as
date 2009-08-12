@@ -24,6 +24,10 @@ package com.asmarkers.state
         public static const DETAIL:String = "detail";
         public static const TOOLTIP:String = "tooltip";
         
+        public static const SINGLE_ICON:String = "singleIcon";
+        public static const SINGLE_TOOLTIP:String = "singleTooltip";
+        public static const SINGLE_DETAIL:String = "singleDetail";
+        
         protected var _marker:Marker;
         
         public function MarkerState(marker:Marker)
