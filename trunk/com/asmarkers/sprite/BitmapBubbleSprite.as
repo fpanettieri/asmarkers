@@ -78,8 +78,8 @@
  
 package com.asmarkers.sprite
 {
-    import com.asmarkers.state.IconState;
     import com.asmarkers.state.MarkerState;
+    import com.asmarkers.state.IIconState;
     
     import flash.display.Bitmap;
     import flash.geom.Point; 
@@ -113,8 +113,8 @@ package com.asmarkers.sprite
         {
         	graphics.clear();
         	
-        	if(_showBubble){
-        	
+        	if(_width > 10 && _height > 10){
+	        	
 	        	// Marker
 	        	_anchorX = (_image.width + _image.x) / 2;
 	        	_anchorY = _image.y - _bubbleMargin;
@@ -126,7 +126,7 @@ package com.asmarkers.sprite
 	            _top = _anchorY - _height - _tailHeight;
 	            
 	            with(graphics){
-
+	
 	                // Set bubble style
 	                lineStyle(_borderWidth, _borderColor, _borderAlpha); 
 	                beginFill(_backgroundColor, _backgroundAlpha);
@@ -145,21 +145,19 @@ package com.asmarkers.sprite
 	            }
 	            
 	            _format.draw(_left, _bottom, _right, _top);
-	        } else {
-	        	//_format.draw(0,0,0,0);
-	        }
+	         }
         }
         
-        override public function changeState(state:MarkerState):void
+        /*override public function changeState(state:MarkerState):void
         {
-        	if(state is IconState){
+        	if(state is IIconState){
         		_showBubble = false;
         	} else {
         		_showBubble = true;
         	}
         		
             _format.changeState(state);
-        }
+        }*/
         
     }
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="ASMarkers" basedir="." default="build">
+	<!-- FLEX_HOME needs to be the root install of the Flex SDK (/opt/flex on build machine right now) -->
+	<property environment="env" />
+	<property name="FLEX_HOME" value="${env.FLEX_HOME}"/>
+	<property name="BIN_DIR" value="bin/" />
+
+	<!-- this is important since it contains the Flex mxmlc/compc/etc. ant task definitions -->
+	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" />
+
+	<target name="build">
+		<fileset id="sources" dir="${basedir}">
+			<include name="**/*.as" />
+		</fileset>
+		<!-- Automatically add all classes -->
+		<pathconvert property="classes" pathsep=" " refid="sources">
+			<chainedmapper>
+				<globmapper from="${basedir}/*" to="*"/>
+				<mapper type="package" from="*.as" to="*"/>
+			</chainedmapper>
+		</pathconvert>
+
+		<compc 	include-classes="${classes}"
+			output="${BIN_DIR}/asmarkers.swc"
+			incremental="true">
+			<source-path path-element="${basedir}"/>
+		</compc>
+
+	</target>
+	
+	<target name="clean">
+		<delete includeemptydirs="true" failonerror="false">
+			<fileset dir="${BIN_DIR}" includes="*" defaultexcludes="false"/>
+		</delete>
+		<delete dir="${BIN_DIR}"/>
+	</target>
+
+</project>
+

@@ -151,7 +151,6 @@ package com.asmarkers.sprite
 
         protected function onFormatterResize(evt:FormatterEvent):void
         {
-        	trace(_format.width, _format.height);
             resize(_format.width, _format.height);
         }
         

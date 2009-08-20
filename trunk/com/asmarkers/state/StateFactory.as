@@ -23,11 +23,12 @@ package com.asmarkers.state
     
     public class StateFactory
     {
-           public static function create(type:String, marker:Marker):MarkerState
+        public static function create(type:String, marker:Marker):MarkerState
         {
             var state:MarkerState;
             
             var t:String = type.toLowerCase();
+
             if(t == MarkerState.ICON){
                 state = new IconState(marker);
                 

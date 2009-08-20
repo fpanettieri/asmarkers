@@ -48,27 +48,28 @@
 
 package com.asmarkers.format
 {
-    import com.asmarkers.data.SmartData;
-    import com.asmarkers.event.FormatterEvent;
-    import com.asmarkers.state.DetailState;
-    import com.asmarkers.state.IconState;
-    import com.asmarkers.state.MarkerState;
-    import com.asmarkers.state.TooltipState;
-    
-    import flash.display.Loader;
+	import flash.display.Loader;
     import flash.events.Event;
-    import flash.events.HTTPStatusEvent;
     import flash.events.IEventDispatcher;
     import flash.events.IOErrorEvent;
-    import flash.events.ProgressEvent;
     import flash.net.URLRequest;
     import flash.text.TextField;
     import flash.text.TextFormat;
+	
+    import com.asmarkers.data.SmartData;
+    import com.asmarkers.event.FormatterEvent;
+    import com.asmarkers.state.IDetailState;
+    import com.asmarkers.state.IIconState;
+    import com.asmarkers.state.IToolTipState;
+    import com.asmarkers.state.MarkerState;
     
     public class SmartFormatter extends TextFormatter
     {
+    	protected var _textPadding:Number = 4;
+    	
         protected var _text:TextField;
         protected var _image:Loader;
+        protected var _hasImage:Boolean;
         
         protected var _minWidth:Number;
         protected var _minHeight:Number;
@@ -158,13 +159,13 @@ package com.asmarkers.format
                 var data:SmartData = _data as SmartData;
                 _image.visible = false;
                 
-                if(state is IconState){
+                if(state is IIconState){
                     _text.text = data.id;
                     
-                } else if (state is TooltipState){
+                } else if (state is IToolTipState){
                     _text.text = data.tooltip;
                     
-                } else if (state is DetailState){
+                } else if (state is IDetailState){
                     loadImage();
                     _text.text = data.detail;
                     _image.visible = true;
@@ -176,17 +177,40 @@ package com.asmarkers.format
         
         private function adjustSize():void
         {
-            _width = _text.textWidth + 4 + _padding * 2;
-            _height = _text.textHeight + 4 + _padding * 2;
-            
-            // Adjust size to media
-            if(_image.visible && _image.content){
-                _width = _width + _image.content.width + 2 * _imagePadding + _horizontalGap;
-                
-                var imgh:Number = _image.content.height + 2 * (_imagePadding + _padding);
-                _height = _height > imgh ? _height : imgh;
-            } 
-            
+        	// Variables initialization
+        	var imgh:Number = 0;
+        	_width = 0;
+        	_height = 0;
+        	
+        	// Set base size
+        	if(_text.text != ""){
+	        	_width += _text.textWidth;
+	            _height += _text.textHeight;
+	        }
+	                	
+        	if(_imageLoaded && _image.visible){
+        		_width = _width + _image.content.width;
+                imgh = _image.content.height;
+        	}
+        	
+        	// If there is valid data
+        	if(_width != 0 && _height != 0){
+        		        		
+        		// TextPadding
+        		var basePadding:Number = _textPadding + _padding * 2; 
+        		_width  += basePadding; 
+            	_height += basePadding;
+            	
+            	if(_imageLoaded && _image.visible){
+            		 _width += 2 * _imagePadding + _horizontalGap;
+	                imgh += 2 * (_imagePadding + _padding);
+            	}	
+        	}
+        	
+        	if(_imageLoaded && _image.visible){
+        		_height = _height > imgh ? _height : imgh;
+        	}
+        	
             // Adjusting width
             if(!isNaN(_maxWidth) && _maxWidth < _width - 2 * _padding){
                 _width = _maxWidth;
