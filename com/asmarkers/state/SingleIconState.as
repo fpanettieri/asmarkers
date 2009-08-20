@@ -23,12 +23,19 @@ package com.asmarkers.state
         {
             super(marker);
             _marker.addEventListener(MouseEvent.MOUSE_OVER, mouseOverHandler, false, 0, true);
+            _marker.addEventListener(MouseEvent.CLICK, clickHandler, false, 0, true);
         }
         
         private function mouseOverHandler(evt:Event):void
         {
             _marker.removeEventListener(MouseEvent.MOUSE_OVER, mouseOverHandler);
             _marker.changeState(MarkerState.SINGLE_TOOLTIP);
+        }
+        
+        private function clickHandler(evt:Event):void
+        {
+            _marker.removeEventListener(MouseEvent.CLICK, clickHandler);
+            _marker.changeState(MarkerState.SINGLE_DETAIL);
         }
     }
 }

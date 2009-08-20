@@ -41,10 +41,10 @@ package com.asmarkers.format
 {
     import com.asmarkers.data.SmartData;
     import com.asmarkers.event.FormatterEvent;
-    import com.asmarkers.state.DetailState;
-    import com.asmarkers.state.IconState;
+    import com.asmarkers.state.IDetailState;
+    import com.asmarkers.state.IIconState;
+    import com.asmarkers.state.IToolTipState;
     import com.asmarkers.state.MarkerState;
-    import com.asmarkers.state.TooltipState;
     
     import flash.text.TextField;
     import flash.text.TextFormat;
@@ -103,11 +103,11 @@ package com.asmarkers.format
             if(_data != null){
                 var data:SmartData = _data as SmartData;
                 
-                if(state is IconState){
+                if(state is IIconState){
                     _text.text = data.id;
-                } else if (state is TooltipState){
+                } else if (state is IToolTipState){
                     _text.text = data.tooltip;
-                } else if (state is DetailState){
+                } else if (state is IDetailState){
                     _text.text = data.detail;
                 }
                 
