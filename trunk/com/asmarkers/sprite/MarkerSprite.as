@@ -31,6 +31,7 @@ package com.asmarkers.sprite
     {
         public static const SQUARED_BUBBLE:String = "squared bubble";
         public static const BITMAP_BUBBLE:String = "bitmap bubble";
+        public static const CIRCLE_BUBBLE:String = "circle bubble";
         
         protected var _format:DataFormatter;
         
