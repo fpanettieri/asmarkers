@@ -33,6 +33,9 @@ package com.asmarkers.sprite
             } else if(t == MarkerSprite.BITMAP_BUBBLE){
                 sprite = new BitmapBubbleSprite();
 
+			} else if(t == MarkerSprite.CIRCLE_BUBBLE){
+                sprite = new CircleBubbleSprite();
+
             } else {
                 throw new UnknownTypeError(type);
             }
