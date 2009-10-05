@@ -78,7 +78,7 @@
 
 package com.asmarkers.sprite
 {
-    import com.asmarkers.state.IconState;
+    import com.asmarkers.state.IIconState;
     import com.asmarkers.state.MarkerState;
     
     import flash.utils.clearTimeout;
@@ -166,7 +166,7 @@ package com.asmarkers.sprite
         
         override public function changeState(state:MarkerState):void
         {
-        	if(state is IconState){
+        	if(state is IIconState){
         		_showBubble = false;
         	} else {
         		_showBubble = true;
