@@ -27,7 +27,10 @@ package com.asmarkers.format
             var format:DataFormatter;
             
             var t:String = type.toLowerCase();
-            if(t == DataFormatter.PLAIN){
+            if(t == DataFormatter.EMPTY){
+                format = new EmptyFormatter();
+                
+            } else if(t == DataFormatter.PLAIN){
                 format = new PlainFormatter();
                 
             } else if(t == DataFormatter.SMART){

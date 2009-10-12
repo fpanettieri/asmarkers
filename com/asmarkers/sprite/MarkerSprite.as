@@ -29,9 +29,10 @@ package com.asmarkers.sprite
     
     public class MarkerSprite extends Sprite
     {
-        public static const SQUARED_BUBBLE:String = "squared bubble";
-        public static const BITMAP_BUBBLE:String = "bitmap bubble";
-        public static const CIRCLE_BUBBLE:String = "circle bubble";
+        public static const SQUARED:String = "squared";
+        public static const BITMAP:String = "bitmap";
+        public static const CIRCLE:String = "circle";
+        public static const GRADUATED_CIRCLE:String = "graduated_circle";
         
         protected var _format:DataFormatter;
         
@@ -41,7 +42,7 @@ package com.asmarkers.sprite
             var cfg:Object = config ? config : {};
 
             if(_format == null){
-                _format = FormatterFactory.create(cfg.format ? cfg.format : DataFormatter.SMART);
+                _format = FormatterFactory.create(cfg.format ? cfg.format : DataFormatter.EMPTY);
                 _format.configure(cfg);
                 _format.mouseEnabled = false;
                 _format.mouseChildren = false;
