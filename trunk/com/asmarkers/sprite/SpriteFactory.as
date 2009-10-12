@@ -27,14 +27,17 @@ package com.asmarkers.sprite
             var sprite:MarkerSprite;
             
             var t:String = type.toLowerCase();
-            if(t == MarkerSprite.SQUARED_BUBBLE){
-                sprite = new SquaredBubbleSprite();
+            if(t == MarkerSprite.SQUARED){
+                sprite = new Squared();
                 
-            } else if(t == MarkerSprite.BITMAP_BUBBLE){
-                sprite = new BitmapBubbleSprite();
+            } else if(t == MarkerSprite.BITMAP){
+                sprite = new Bitmap();
 
-			} else if(t == MarkerSprite.CIRCLE_BUBBLE){
-                sprite = new CircleBubbleSprite();
+			} else if(t == MarkerSprite.CIRCLE){
+                sprite = new Circle();
+                
+            } else if(t == MarkerSprite.GRADUATED_CIRCLE){
+                sprite = new GraduatedCircle();
 
             } else {
                 throw new UnknownTypeError(type);

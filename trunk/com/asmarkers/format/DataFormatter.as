@@ -23,6 +23,7 @@ package com.asmarkers.format
     
     public class DataFormatter extends Sprite
     {
+    	public static const EMPTY:String = "empty";
         public static const PLAIN:String = "plain";
         public static const SMART:String = "smart";
         
@@ -38,7 +39,7 @@ package com.asmarkers.format
         
         public function configure(cfg:Object):void
         {
-            _data = cfg.data ? cfg.data : null;
+            _data = cfg.data ? cfg.data : new MarkerData();
         }
         
         public function draw(minX:Number, minY:Number, width:Number, height:Number):void

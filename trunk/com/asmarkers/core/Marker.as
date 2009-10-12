@@ -37,7 +37,6 @@ package com.asmarkers.core
     {
         protected var _state:MarkerState;
         protected var _sprite:MarkerSprite;
-        protected var _data:MarkerData;
         
         public function configure(config:Object = null):void
         {
@@ -47,7 +46,7 @@ package com.asmarkers.core
             // Add the marker to the configuration
             cfg.marker = this;
             
-            _sprite = SpriteFactory.create(cfg.sprite ? cfg.sprite : MarkerSprite.SQUARED_BUBBLE);
+            _sprite = SpriteFactory.create(cfg.sprite ? cfg.sprite : MarkerSprite.CIRCLE);
             _sprite.configure(cfg);
             addChild(_sprite);
             
