@@ -9,7 +9,7 @@ package com.asmarkers.sprite
     public class Bitmap extends Bubble
     {
         protected var _offset:Point;
-        protected var _image:Bitmap;
+        protected var _image:flash.display.Bitmap;
         protected var _anchorX:Number;
         protected var _anchorY:Number;
         protected var _bubbleMargin:Number;
@@ -23,7 +23,7 @@ package com.asmarkers.sprite
             var cfg:Object = config ? config : {};
             
             _offset = cfg.offset ? cfg.offset : new Point(0,0);
-            _image = cfg.image ? cfg.image : new Bitmap();
+            _image = cfg.image ? cfg.image : new flash.display.Bitmap();
             _bubbleMargin = cfg.bubbleMargin ? cfg.bubbleMargin : 5;
             
             _image.x = _offset.x * -1; 
