@@ -30,6 +30,10 @@ package com.asmarkers.state
         
         public function mouseClickHandler(evt:Event):void
         {
+            _marker.removeEventListener(MouseEvent.CLICK, mouseClickHandler);
+            _marker.removeEventListener(MouseEvent.MOUSE_OUT, mouseOutHandler);
+            _marker.changeState(MarkerState.SIMPLE_ICON);
+
             _marker.dispatchEvent(new MarkerEvent(_marker, MarkerState.SIMPLE_TOOLTIP, MarkerEvent.CLICK));
         }
 
