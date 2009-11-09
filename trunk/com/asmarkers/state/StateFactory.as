@@ -37,6 +37,12 @@ package com.asmarkers.state
                 
             } else if(t == MarkerState.TOOLTIP){
                 state = new TooltipState(marker);
+
+            } else if(t == MarkerState.SIMPLE_ICON){
+                state = new SimpleIconState(marker);
+
+            } else if(t == MarkerState.SIMPLE_TOOLTIP){
+                state = new SimpleTooltipState(marker);
                 
             } else if(t == MarkerState.SINGLE_ICON){
                 state = new SingleIconState(marker);

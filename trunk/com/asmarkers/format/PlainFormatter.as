@@ -101,14 +101,14 @@ package com.asmarkers.format
         override public function changeState(state:MarkerState):void
         {
             if(_data != null){
-                var data:SmartData = _data as SmartData;
+                var data:Object = _data as Object;
                 
                 if(state is IIconState){
-                    _text.text = data.id;
+                   	_text.text = data.hasOwnProperty("id") ? data.id : "";
                 } else if (state is IToolTipState){
-                    _text.text = data.tooltip;
+                    _text.text = data.hasOwnProperty("tooltip") ? data.tooltip : "";
                 } else if (state is IDetailState){
-                    _text.text = data.detail;
+                    _text.text = data.hasOwnProperty("detail") ? data.detail : "";
                 }
                 
                 adjustSize();
