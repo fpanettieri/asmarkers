@@ -24,7 +24,6 @@ package com.asmarkers.state
         public static const DETAIL:String = "detail";
         public static const TOOLTIP:String = "tooltip";
         public static const SIMPLE_ICON:String = "simpleicon";
-        public static const SIMPLE_TOOLTIP:String = "simpletooltip";
         
         public static const SINGLE_ICON:String = "singleicon";
         public static const SINGLE_TOOLTIP:String = "singletooltip";
