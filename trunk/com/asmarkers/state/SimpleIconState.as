@@ -13,22 +13,24 @@
 package com.asmarkers.state
 {
     import com.asmarkers.core.Marker;
-    
+    import com.asmarkers.event.MarkerEvent;
+
     import flash.events.Event;
     import flash.events.MouseEvent;
+
     
     public class SimpleIconState extends MarkerState implements IIconState
     {
         public function SimpleIconState(marker:Marker)
         {
             super(marker);
-            _marker.addEventListener(MouseEvent.MOUSE_OVER, mouseOverHandler, false, 0, true);
+            _marker.addEventListener(MouseEvent.CLICK, mouseClickHandler, false, 0, true);
         }
         
-        private function mouseOverHandler(evt:Event):void
+        private function mouseClickHandler(evt:Event):void
         {
-            _marker.removeEventListener(MouseEvent.MOUSE_OVER, mouseOverHandler);
-            _marker.changeState(MarkerState.SIMPLE_TOOLTIP);
+            _marker.removeEventListener(MouseEvent.CLICK, mouseClickHandler);
+            _marker.dispatchEvent(new MarkerEvent(_marker, MarkerState.SIMPLE_ICON, MarkerEvent.CLICK));
         }
     }
 }
